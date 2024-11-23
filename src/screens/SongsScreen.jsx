@@ -109,7 +109,7 @@ const SongsScreen = () => {
     const mins = Math.floor(seconds / 60);
     // toplam saniye sayısından geriye kalan saniyeyi hesaplar
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ' '}`;
+    return `${mins}:${secs < 10 ? '0' : ' '}${secs}`;
   };
 
   const togglePlayback = async () => {
@@ -121,7 +121,7 @@ const SongsScreen = () => {
       await TrackPlayer.play();
     }
     // isplaying değerini oynatma ve durdurma butonuna basıldığında tam tersi değerine çevir
-    setIsPlaying(isPlaying);
+    setIsPlaying(!isPlaying);
   };
   // müziği geri alır
   const seekBackward = async () => {
@@ -319,8 +319,64 @@ const SongsScreen = () => {
                     height: 15,
                     backgroundColor: 'white',
                     borderRadius: 8,
+                    left: `${(progress.position / progress.duration) * 100}%`,
                   }}
                 />
+              </View>
+
+              <View
+                style={{
+                  marginTop: 12,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.text}>
+                  {formatTime(progress.position)}{' '}
+                </Text>
+                <Text style={styles.text}>
+                  {formatTime(progress.duration)}{' '}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 18,
+                  alignItems: 'center',
+                }}>
+                <Pressable onPress={seekBackward}>
+                  <Entypo
+                    name="controller-fast-backward"
+                    size={30}
+                    color="white"
+                  />
+                </Pressable>
+
+                <Pressable>
+                  <Ionicons name="play-skip-back" size={30} color="white" />
+                </Pressable>
+
+                <Pressable onPress={togglePlayback}>
+                  {isPlaying ? (
+                    <AntDesign name="pausecircle" size={60} color="white" />
+                  ) : (
+                    <Entypo name="controller-play" size={60} color="white" />
+                  )}
+                </Pressable>
+
+                <Pressable>
+                  <Ionicons name="play-skip-forward" size={30} color="white" />
+                </Pressable>
+
+                <Pressable onPress={seekForward}>
+                  <Entypo
+                    name="controller-fast-forward"
+                    size={30}
+                    color="white"
+                  />
+                </Pressable>
               </View>
             </View>
           </View>
@@ -366,5 +422,9 @@ const styles = StyleSheet.create({
   progressBar: {
     height: '100%',
     backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 16,
+    color: 'white',
   },
 });
