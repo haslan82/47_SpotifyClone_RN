@@ -18,12 +18,16 @@ import ArtistCard from '../components/ArtistCard';
 import {AlbumContext} from '../context/AlbumContext';
 import AlbumCard from '../components/AlbumCard';
 import Error from '../components/Error';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const {artists, loading, error} = useContext(ArtistContext);
-  const {albums, loading: albumsLoading, error: albumsError,} = useContext(AlbumContext);
+  const {
+    albums,
+    loading: albumsLoading,
+    error: albumsError,
+  } = useContext(AlbumContext);
 
   // console.log(artists);
 
@@ -32,112 +36,109 @@ const HomeScreen = () => {
       colors={['#040306', '#131624', '#192f6a']}
       style={styles.linearGradient}>
       {albumsLoading ? (
-        <Loader/>) : albumsError ? (
-          <Error error={albumsError} />
-        ):
+        <Loader />
+      ) : albumsError ? (
+        <Error error={albumsError} />
+      ) : (
         <ScrollView
-        style={{marginTop: 50}}
-        contentContainerStyle={{paddingBottom: 100}}>
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
-            <Image source={{uri: UriImage}} style={styles.headerImage} />
-            <Text style={styles.headerText}>Welcome to Spotify</Text>
+          style={{marginTop: 50}}
+          contentContainerStyle={{paddingBottom: 100}}>
+          <View style={styles.header}>
+            <View style={styles.headerContent}>
+              <Image source={{uri: UriImage}} style={styles.headerImage} />
+              <Text style={styles.headerText}>Welcome to Spotify</Text>
+            </View>
+            <MaterialCommunityIcons
+              name="lightning-bolt-outline"
+              color="white"
+              size={24}
+            />
           </View>
-          <MaterialCommunityIcons
-            name="lightning-bolt-outline"
-            color="white"
-            size={24}
-          />
-        </View>
-        {/* tabButtons */}
 
-        <View style={styles.tabButtons}>
-          <Pressable style={styles.pressable}>
-            <Text style={styles.tabText}>Music</Text>
-          </Pressable>
-          <Pressable style={styles.pressable}>
-            <Text style={styles.tabText}>Podcast & Shows</Text>
-          </Pressable>
-        </View>
+          {/* tabButtons */}
 
-        {/* 3. section */}
+          <View style={styles.tabButtons}>
+            <Pressable style={styles.pressable}>
+              <Text style={styles.tabText}>Music</Text>
+            </Pressable>
+            <Pressable style={styles.pressable}>
+              <Text style={styles.tabText}>Podcast & Shows</Text>
+            </Pressable>
+          </View>
 
-        <View style={{marginTop: 30}}>
-          <Pressable style={styles.likedSongs}
-          onPress={()=>navigation.navigate('Songs')}
-          >
-            <LinearGradient
-              colors={['#33006F', '#FFFFFF']}
-              style={{borderRadius: 20}}>
-              <Pressable
-                style={{
-                  width: 55,
-                  height: 55,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <AntDesign name="heart" color="white" size={24} />
-              </Pressable>
-            </LinearGradient>
-            <Text style={styles.likedSongsText1}>Songs</Text>
-          </Pressable>
+          {/* 3. section */}
 
-          <Pressable style={styles.likedSongs}>
-            <LinearGradient
-              colors={['#33006F', '#FFFFFF']}
-              style={{borderRadius: 20}}>
-              <Pressable
-                style={{
-                  width: 55,
-                  height: 55,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <AntDesign name="star" color="white" size={24} />
-              </Pressable>
-            </LinearGradient>
-            <Text style={styles.likedSongsText}>Rock & Roll</Text>
-          </Pressable>
+          <View style={{marginTop: 30}}>
+            <Pressable
+              style={styles.likedSongs}
+              onPress={() => navigation.navigate('Songs')}>
+              <LinearGradient
+                colors={['#33006F', '#FFFFFF']}
+                style={{borderRadius: 20}}>
+                <Pressable
+                  style={{
+                    width: 55,
+                    height: 55,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <AntDesign name="heart" color="white" size={24} />
+                </Pressable>
+              </LinearGradient>
+              <Text style={styles.likedSongsText1}>Songs</Text>
+            </Pressable>
 
-          <Pressable style={styles.likedSongs}>
-            <LinearGradient
-              colors={['#33006F', '#FFFFFF']}
-              style={{borderRadius: 20}}>
-              <Pressable
-                style={{
-                  width: 55,
-                  height: 55,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Entypo name="moon" color="white" size={24} />
-              </Pressable>
-            </LinearGradient>
-            <Text style={styles.likedSongsText1}>Caz</Text>
-          </Pressable>
-          <Text style={styles.title}>Your Top Artist</Text>
+            <Pressable style={styles.likedSongs}>
+              <LinearGradient
+                colors={['#33006F', '#FFFFFF']}
+                style={{borderRadius: 20}}>
+                <Pressable
+                  style={{
+                    width: 55,
+                    height: 55,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <AntDesign name="star" color="white" size={24} />
+                </Pressable>
+              </LinearGradient>
+              <Text style={styles.likedSongsText}>Rock & Roll</Text>
+            </Pressable>
 
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {artists?.map((artist, index) => (
-              <ArtistCard key={index} artist={artist} />
-            ))}
-          </ScrollView>
+            <Pressable style={styles.likedSongs}>
+              <LinearGradient
+                colors={['#33006F', '#FFFFFF']}
+                style={{borderRadius: 20}}>
+                <Pressable
+                  style={{
+                    width: 55,
+                    height: 55,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Entypo name="moon" color="white" size={24} />
+                </Pressable>
+              </LinearGradient>
+              <Text style={styles.likedSongsText1}>Caz</Text>
+            </Pressable>
+            <Text style={styles.title}>Your Top Artist</Text>
 
-          <View style={{height: 20}} />
-          <Text style={styles.title}>Populer Albums</Text>
-          <ScrollView horizontal={true}>
-            {albums?.map((album, index) => (
-              <AlbumCard key={index} album={album} />
-            ))}
-          </ScrollView>
-        </View>
-      </ScrollView>
-      
-      }
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {artists?.map((artist, index) => (
+                <ArtistCard key={index} artist={artist} />
+              ))}
+            </ScrollView>
 
-      
-
-
+            <View style={{height: 20}} />
+            <Text style={styles.title}>Populer Albums</Text>
+            <ScrollView horizontal={true}>
+              {albums?.map((album, index) => (
+                <AlbumCard key={index} album={album} />
+              ))}
+            </ScrollView>
+          </View>
+        </ScrollView>
+      )}
     </LinearGradient>
   );
 };
