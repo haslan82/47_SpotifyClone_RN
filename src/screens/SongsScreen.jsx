@@ -80,7 +80,9 @@ const SongsScreen = () => {
         ],
       });
     } catch {
-      console.error('Error setting up player', error);
+     /*  console.log('Error setting up player', error); */
+     console.error('Player setup failed:', error);
+
     }
   };
   const handlePlay = async track => {
@@ -167,7 +169,7 @@ const SongsScreen = () => {
                   marginTop: 10,
                   padding: 10,
                 }}>
-                <AntDesign name="search1" size="24" color="white" />
+                <AntDesign name="search1" size={24} color="white" />
                 <TextInput
                   onChangeText={setSearchText}
                   onSubmitEditing={handleSearch}
@@ -202,7 +204,7 @@ const SongsScreen = () => {
           {/* elimizdeki verileri ekrana ya map ile ya da Flatlist  ile render ederiz */}
 
           {loading ? (
-            <ActivityIndicator size={'large'} color={'white'} />
+            <ActivityIndicator size='large' color={'white'} />
           ) : (
             <FlatList
               data={searchTracks}
@@ -280,7 +282,7 @@ const SongsScreen = () => {
                 justifyContent: 'space-between',
                 marginTop: 20,
               }}>
-              <View style={{}}>
+              <View >
                 <Text
                   style={{fontSize: 18, fontWeight: 'bold', color: 'white'}}>
                   {selectedTrack?.title}
