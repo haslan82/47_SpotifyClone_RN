@@ -1,3 +1,4 @@
+
 # Spotify Clone Projesi
 
 Spotify Clone, React Native kullanılarak oluşturuldu. Uygulama, Spotify'ın temel özelliklerini kopyalayarak kullanıcıların ekranlar arasında gezinmesine, sevdikleri parçaları arayabilmelerine olanak sağlar.
