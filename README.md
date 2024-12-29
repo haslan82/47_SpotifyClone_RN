@@ -6,7 +6,6 @@ Yerleşik müzik çalar sayesinde şarkıların çalınmasına, duraklatılması
 
 ## Kullanılan Kütüphaneler
 
-
 @react-navigation/native@^6 @react-navigation/stack@^6 @react-navigation/bottom-tabs@^6
 react-native-screens react-native-safe-area-context
 react-native-vector-icons
